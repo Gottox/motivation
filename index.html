@@ -59,9 +59,15 @@ var motivation = [
 	"Du bist wunderbar!",
 	"Auf deine Leistungen kann man wirklich stolz sein!",
 	"Alter, Hammer!",
-	"Error 4053!",
+	"Echt geschmeidig, was du vorgelegt hast!",
 ];
-document.write(motivation[Math.floor(Math.random() * motivation.length)]);
+
+var index = Math.floor(Math.random() * motivation.length)
+if(location.hash && location.hash[0] == "#") {
+	index = location.hash.substr(1);
+	location.hash = "";
+}
+document.write(motivation[index]);
 				</script></span><span class=cursor>_</span><br>
 			<span class=heart>❤️ </span>
 			<span class=heart>❤️ </span>
