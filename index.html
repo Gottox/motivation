@@ -53,8 +53,6 @@ html {
 			<span class=heart>❤️ </span><br>
 			<span id="motivation">
 				<script>
-meSpeak.loadConfig("mespeak/mespeak_config.json");
-meSpeak.loadVoice('mespeak/voices/de.json');
 const motivation = [
 	"Du bist eine echt geile Person!",
 	"Jemanden wie dich hätte ich gerne als bestes Freundy!",
@@ -64,12 +62,21 @@ const motivation = [
 	"Alter, Hammer!",
 	"Echt geschmeidig, was du vorgelegt hast!",
 ];
-
-const index = Math.floor(Math.random() * motivation.length)
-if(location.hash && location.hash[0] == "#") {
-	index = location.hash.substr(1);
-	location.hash = "";
+meSpeak.loadConfig("mespeak/mespeak_config.json");
+meSpeak.loadVoice('mespeak/voices/de.json');
+let used_indices = JSON.parse(localStorage.getItem('used_indices') ?? '[]');
+if (used_indices.length === motivation.length) {
+	used_indices = [];
 }
+
+let index;
+do {
+	index = Math.floor(Math.random() * motivation.length)
+} while(used_indices.includes(index));
+
+used_indices.push(index);
+localStorage.setItem('used_indices', JSON.stringify(used_indices));
+
 document.write(motivation[index]);
 				</script></span><span class=cursor>_</span><br>
 			<span class=heart>❤️ </span>
