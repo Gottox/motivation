@@ -19,12 +19,13 @@
   100% { opacity: 0.0; }
 }
 
-body {
+html {
 	padding: 200px 0;
 	text-align: center;
 	background: #000;
 	color: #0f0;
 	text-shadow: 0px 0px 3px #0f0;
+	cursor: pointer;
 }
 #motivation {
 	font-size:40px;
@@ -52,7 +53,9 @@ body {
 			<span class=heart>❤️ </span><br>
 			<span id="motivation">
 				<script>
-var motivation = [
+meSpeak.loadConfig("mespeak/mespeak_config.json");
+meSpeak.loadVoice('mespeak/voices/de.json');
+const motivation = [
 	"Du bist ein echt geiler Typ!",
 	"Jemanden wie dich hätte ich gerne als besten Freund!",
 	"Ich finde du bist etwas ganz großartiges",
@@ -62,7 +65,7 @@ var motivation = [
 	"Echt geschmeidig, was du vorgelegt hast!",
 ];
 
-var index = Math.floor(Math.random() * motivation.length)
+const index = Math.floor(Math.random() * motivation.length)
 if(location.hash && location.hash[0] == "#") {
 	index = location.hash.substr(1);
 	location.hash = "";
@@ -75,12 +78,10 @@ document.write(motivation[index]);
 		</h1>
 
 		<script>
-			window.onload = function() {
-				var text = document.getElementById('motivation').innerText;
-				meSpeak.loadConfig("mespeak/mespeak_config.json");
-				meSpeak.loadVoice('mespeak/voices/de.json');
-				meSpeak.speak(text);
-			}
+window.onclick = function() {
+	var text = document.getElementById('motivation').innerText;
+	meSpeak.speak(text);
+}
 		</script>
 	</body>
 </html>
