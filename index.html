@@ -61,6 +61,11 @@ const motivation = [
 	"Auf deine Leistungen kann man wirklich stolz sein!",
 	"Alter, Hammer!",
 	"Echt geschmeidig, was du vorgelegt hast!",
+	"Mach weiter so!",
+	"Wahnsinn!",
+	"Ich mag dich!",
+	"Du bist nicht allein!",
+	`Fehler Nummer ${String(Math.round(Math.random() * 10000)).split('').join(' ')}`
 ];
 meSpeak.loadConfig("mespeak/mespeak_config.json");
 meSpeak.loadVoice('mespeak/voices/de.json');
@@ -85,7 +90,7 @@ document.write(motivation[index]);
 		</h1>
 
 		<script>
-window.onclick = function() {
+window.onload = window.onclick = function() {
 	var text = document.getElementById('motivation').innerText;
 	meSpeak.speak(text);
 }
